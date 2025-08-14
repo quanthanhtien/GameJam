@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Scripts/Editor/StyleSheets/BetterInspectorStyleSheet.uss?fileID=7433441132597879392&amp;guid=7148adf29dcf94a4ba3708dae7778ad7&amp;type=3#BetterInspectorStyleSheet" />
+    <ui:GroupBox name="MeshDataGroup" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-wrap: wrap; flex-direction: row; color: rgb(195, 195, 195); justify-content: center;">
+        <ui:GroupBox name="VerticesGroup" class="meshInformationItem" style="flex-direction: row;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+            <ui:Label text="Vertices" style="max-width: 50px; flex-grow: 1; opacity: 0.8; flex-shrink: 1;" />
+            <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: none;" />
+            <ui:GroupBox name="SubmeshGroup" class="meshInformationItem" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; min-width: auto;">
+                <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: flex;" />
+                <ui:Label text="0" display-tooltip-when-elided="true" name="SubmeshValue" tooltip="Length" style="color: rgb(255, 255, 255);" />
+                <ui:Label text="Submeshes" style="opacity: 0.8;" />
+                <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: none;" />
+                <ui:Label text="0" display-tooltip-when-elided="true" name="SubmeshVertices" tooltip="Length" style="color: rgb(255, 255, 255); margin-right: 5px;" />
+            </ui:GroupBox>
+        </ui:GroupBox>
+        <ui:GroupBox name="TrianglesGroup" class="meshInformationItem" style="flex-direction: row;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+            <ui:Label text="Triangles" style="max-width: 55px; flex-grow: 1; opacity: 0.8; flex-shrink: 1;" />
+            <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: none;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="EdgeGroup" class="meshInformationItem" style="flex-direction: row; flex-shrink: 1;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+            <ui:Label text="Edges" style="max-width: 55px; flex-grow: 1; opacity: 0.8;" />
+            <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: none;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="TangentsGroup" class="meshInformationItem" style="flex-direction: row; flex-shrink: 1;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+            <ui:Label text="Tangents" style="max-width: 55px; flex-grow: 1; opacity: 0.8;" />
+            <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: none;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="FaceGroup" class="meshInformationItem" style="flex-direction: row; flex-shrink: 1;">
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+            <ui:Label text="Faces" style="max-width: 55px; flex-grow: 1; opacity: 0.8;" />
+            <ui:Label text="," display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5; display: none;" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

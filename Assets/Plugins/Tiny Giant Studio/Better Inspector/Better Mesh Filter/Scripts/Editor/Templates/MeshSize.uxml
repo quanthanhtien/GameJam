@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox name="Size" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-wrap: wrap; flex-direction: row;">
+        <ui:GroupBox name="LengthGroup" style="margin-left: 0; margin-right: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row;">
+            <ui:Label text="Length" display-tooltip-when-elided="true" style="flex-grow: 1; opacity: 0.8; width: 50px;" />
+            <ui:Label text=":" display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5;" />
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+        </ui:GroupBox>
+        <ui:GroupBox name="HeightGroup" style="margin-left: 0; margin-right: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; flex-shrink: 1;">
+            <ui:Label text="Height" display-tooltip-when-elided="true" style="flex-grow: 1; opacity: 0.8; width: 50px;" />
+            <ui:Label text=":" display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5;" />
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+        </ui:GroupBox>
+        <ui:GroupBox name="DepthGroup" style="margin-left: 0; margin-right: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row;">
+            <ui:Label text="Depth" display-tooltip-when-elided="true" style="flex-grow: 1; opacity: 0.8; width: 50px;" />
+            <ui:Label text=":" display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5;" />
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Value" tooltip="Length" style="color: rgb(255, 255, 255);" />
+        </ui:GroupBox>
+        <ui:GroupBox name="DepthGroup" style="margin-left: 0; margin-right: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row;">
+            <ui:Label text="Center" display-tooltip-when-elided="true" style="flex-grow: 1; opacity: 0.8; width: 50px;" />
+            <ui:Label text=":" display-tooltip-when-elided="true" name="Separator" style="width: 10px; opacity: 0.5;" />
+            <ui:Label text="0" display-tooltip-when-elided="true" name="Center" tooltip="Length" style="color: rgb(255, 255, 255);" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

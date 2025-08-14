@@ -1,0 +1,241 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Template name="MeshPreview" src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Scripts/Editor/Templates/MeshPreview.uxml?fileID=9197481963319205126&amp;guid=7358ad733b4a05a4c88dbecb820153e8&amp;type=3#MeshPreview" />
+    <ui:Template name="MeshDataGroup" src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Scripts/Editor/Templates/MeshDataGroup.uxml?fileID=9197481963319205126&amp;guid=a538da97195261444af2705b00276275&amp;type=3#MeshDataGroup" />
+    <ui:Template name="MeshSize" src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Scripts/Editor/Templates/MeshSize.uxml?fileID=9197481963319205126&amp;guid=77d1353e9f1aaa042b999630a56c889a&amp;type=3#MeshSize" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Scripts/Editor/StyleSheets/BetterInspectorStyleSheet.uss?fileID=7433441132597879392&amp;guid=7148adf29dcf94a4ba3708dae7778ad7&amp;type=3#BetterInspectorStyleSheet" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Scripts/Editor/StyleSheets/ButtonStyleSheet.uss?fileID=7433441132597879392&amp;guid=fd70bd767c8c1f848b3bc60b978e77a7&amp;type=3#ButtonStyleSheet" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Common%20Scripts/Editor/StyleSheets/CustomFoldout.uss?fileID=7433441132597879392&amp;guid=613d348a6fe013a408e4ee1a3631e627&amp;type=3#CustomFoldout" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Common%20Scripts/Editor/StyleSheets/Fields.uss?fileID=7433441132597879392&amp;guid=358e4c0387adee748b33cc10dacb35b5&amp;type=3#Fields" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Common%20Scripts/Editor/StyleSheets/Icons.uss?fileID=7433441132597879392&amp;guid=8485147538ab9684288c884484cd04b0&amp;type=3#Icons" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Common%20Scripts/Editor/StyleSheets/Labels.uss?fileID=7433441132597879392&amp;guid=8e783b06ea75cae42a70cbd434239c92&amp;type=3#Labels" />
+    <Style src="project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Common%20Scripts/Editor/StyleSheets/Button.uss?fileID=7433441132597879392&amp;guid=08db9e3ca263ae74b9fd392cb95ab541&amp;type=3#Button" />
+    <ui:GroupBox name="RootHolder" picking-mode="Ignore" style="margin-left: -15px; margin-right: -10px; margin-top: -25px; margin-bottom: 0; padding-left: 10px; padding-right: 10px; padding-top: 25px; padding-bottom: 0; transition-duration: 0.5s;">
+        <ui:GroupBox name="PreviewContainers" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: column; align-items: center;">
+            <ui:GroupBox name="PreviewsGroupBox" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; flex-wrap: wrap; width: 100%;">
+                <ui:Instance template="MeshPreview" name="MeshPreview" style="flex-grow: 1;" />
+                <ui:Instance template="MeshPreview" name="MeshPreview" style="flex-grow: 1;" />
+                <ui:Instance template="MeshPreview" name="MeshPreview" style="flex-grow: 1;" />
+                <ui:Instance template="MeshPreview" name="MeshPreview" style="flex-grow: 1;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="AllSelectedMeshCombinedDetails" style="width: 100%; margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 0; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; align-items: stretch;">
+                <ui:Label text="Total" display-tooltip-when-elided="true" class="unfocusedLabel" style="border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.1); border-right-color: rgba(255, 255, 255, 0.1); border-top-color: rgba(255, 255, 255, 0.1); border-bottom-color: rgba(255, 255, 255, 0.1); -unity-text-align: middle-center;" />
+                <ui:Instance template="MeshDataGroup" name="MeshDataGroup" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 1; padding-right: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-color: rgba(255, 255, 255, 0.08); border-right-color: rgba(255, 255, 255, 0.08); border-top-color: rgba(255, 255, 255, 0.08); border-bottom-color: rgba(255, 255, 255, 0.08);" />
+            </ui:GroupBox>
+            <ui:GroupBox name="Toolbar" style="position: absolute; min-width: initial; width: 100%; align-items: flex-end; justify-content: flex-end; padding-right: 0; flex-direction: column; margin-left: 0; margin-right: 10px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; background-color: rgba(65, 65, 65, 0.78); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; align-items: center; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px;">
+                    <uie:ColorField value="#25FFFFFF" name="PreviewColorField" tooltip="Preview background color" style="max-width: 40px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; margin-right: 5px; margin-left: 5px;" />
+                    <ui:Button display-tooltip-when-elided="true" name="InspectorSettingsButton" tooltip="Inspector Settings" class="rotatingButton" style="width: 15px; height: 15px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; align-items: flex-end; position: relative; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-right: 5px; margin-left: 5px; background-color: rgba(88, 88, 88, 0); -unity-background-image-tint-color: rgb(196, 196, 196); background-image: url(&quot;project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Artworks/TGS_SettingsIcon.png?fileID=2800000&amp;guid=c5762e10126fcdf449f270a63797c014&amp;type=3#TGS_SettingsIcon&quot;);" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+        </ui:GroupBox>
+        <ui:Label text="+5 More" display-tooltip-when-elided="true" name="TotalSelectedObjectCount" style="-unity-text-align: middle-center; position: relative;" />
+        <ui:VisualElement name="MainContainer" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+            <ui:GroupBox name="MeshFieldGroupBox" style="margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 2px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; align-items: center;">
+                <ui:Button display-tooltip-when-elided="true" name="InspectorSettingsButton2" tooltip="Inspector Settings" class="rotatingButton" style="width: 15px; height: 15px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; align-items: flex-end; position: relative; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-right: 5px; margin-left: 0; background-color: rgba(88, 88, 88, 0); opacity: 0.3; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-image: url(&quot;project://database/Assets/Plugins/Tiny%20Giant%20Studio/Better%20Inspector/Better%20Mesh%20Filter/Artworks/TGS_SettingsIcon.png?fileID=2800000&amp;guid=c5762e10126fcdf449f270a63797c014&amp;type=3#TGS_SettingsIcon&quot;);" />
+                <uie:ObjectField type="UnityEngine.Mesh, UnityEngine.CoreModule" binding-path="m_Mesh" name="mesh" allow-scene-objects="true" tooltip="Tooltip" style="margin-left: 0; margin-right: 0; margin-bottom: 0; margin-top: 0; overflow: visible; visibility: visible; flex-grow: 1; flex-shrink: 1; -unity-text-align: middle-center; font-size: 13px; transition-property: background-color; transition-duration: 0.5s;" />
+            </ui:GroupBox>
+            <ui:Label text="Asset Location  Asset Location  Asset Location  Asset Location  Asset Location  Asset Location  " display-tooltip-when-elided="true" name="AssetLocationOutsideFoldout" style="margin-top: 0; padding-left: 0; margin-left: 0; margin-right: 0; margin-bottom: 0; white-space: normal; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: upper-center; opacity: 0.7; -unity-font-style: italic;" />
+            <ui:VisualElement name="EmptySpace" style="height: 5px;" />
+            <ui:GroupBox name="InspectorSettings" class="custom-foldout" style="display: flex;">
+                <ui:GroupBox name="Header" class="header" style="align-items: stretch;">
+                    <ui:Toggle name="FoldoutToggle" text="Inspector Settings" view-data-key="foldoutInspectorSettings" class="unity-foldout__toggle foldout-toggle" style="min-width: 125px;" />
+                    <ui:Label text="Reset to" display-tooltip-when-elided="true" class="unimportant-information-label" style="margin-right: 0;" />
+                    <ui:Button text="Default 1" display-tooltip-when-elided="true" name="ResetInspectorSettings" tooltip="Show Most Information In Preview" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-width: 0; border-bottom-width: 0;" />
+                    <ui:Button text="Default 2" display-tooltip-when-elided="true" name="ResetInspectorSettings2" tooltip="Show most information in a separate foldout" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-width: 0; border-top-width: 0;" />
+                    <ui:Button text="Minimal" display-tooltip-when-elided="true" name="ResetInspectorSettingsToMinimal" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-width: 0; border-top-width: 0;" />
+                    <ui:Button text="Empty" display-tooltip-when-elided="true" name="ResetInspectorSettingsToNothing" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-width: 0; border-top-width: 0;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="Content" class="content" style="padding-top: 0; display: flex;">
+                    <ui:GroupBox name="Footer" style="margin-left: -10px; margin-right: -7px; margin-top: 0; margin-bottom: 10px; padding-left: 10px; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; align-items: stretch; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-color: rgb(60, 60, 60); border-right-color: rgb(60, 60, 60); border-top-color: rgb(36, 36, 36); border-bottom-color: rgb(36, 36, 36); background-color: rgba(0, 0, 0, 0.1); border-left-width: 1px; border-right-width: 1px; border-top-width: 0; border-bottom-width: 1px; overflow: hidden;">
+                        <ui:Label text="v1.9.0" display-tooltip-when-elided="true" tooltip="Current Version of Better Mesh Asset" style="margin-right: 10px; -unity-font-style: bold-and-italic; -unity-text-align: middle-right; margin-left: 10px; flex-grow: 1; min-height: 25px;" />
+                        <uie:ToolbarButton text="Check for Updates" display-tooltip-when-elided="true" name="AssetLink" tooltip="Check if there are updates available." style="-unity-text-align: middle-left; justify-content: center; overflow: hidden; flex-shrink: 0;" />
+                        <uie:ToolbarButton text="Documentation" display-tooltip-when-elided="true" name="Documentation" tooltip="Opens the online documentation" style="-unity-text-align: middle-left; justify-content: center; overflow: hidden; flex-shrink: 0; border-left-width: 0;" />
+                        <uie:ToolbarButton text="Other Assets" display-tooltip-when-elided="true" name="OtherAssetsLink" tooltip="Checkout other awesome assets." style="-unity-text-align: middle-left; overflow: hidden; flex-shrink: 0; border-left-width: 0;" />
+                    </ui:GroupBox>
+                    <ui:Toggle label="Auto Hide Inspector Settings Foldout" name="autoHideInspectorSettings" />
+                    <ui:Toggle label="Mesh field on Top" name="MeshFieldOnTop" />
+                    <ui:GroupBox name="InspectorCustomizationFoldout" class="custom-foldout" style="display: flex;">
+                        <ui:GroupBox name="Header" class="header">
+                            <ui:Toggle name="FoldoutToggle" text="Inspector Customization" view-data-key="foldoutInspectorCustomization" class="unity-foldout__toggle foldout-toggle" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="Content" class="content">
+                            <ui:GroupBox style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; flex-direction: row;">
+                                <ui:Toggle name="OverrideFoldoutColorToggle" style="margin-right: 5px; margin-left: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;" />
+                                <uie:ColorField label="Foldout Color" value="#0000FF05" name="FoldoutColorField" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 1; flex-grow: 1;" />
+                            </ui:GroupBox>
+                            <ui:GroupBox style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; align-items: center;">
+                                <ui:Toggle name="OverrideInspectorColorToggle" style="margin-right: 5px; margin-left: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0;" />
+                                <uie:ColorField label="Inspector Color" value="#0000FF05" name="InspectorColorField" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 1; flex-grow: 1;" />
+                            </ui:GroupBox>
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="MeshPreviewSettingsFoldout" class="custom-foldout" style="display: flex;">
+                        <ui:GroupBox name="Header" class="header">
+                            <ui:Toggle name="showMeshPreview" style="margin-left: 5px; margin-right: 0; margin-top: 1px; margin-bottom: 1px;" />
+                            <ui:Toggle name="FoldoutToggle" view-data-key="foldoutMeshPreview" text="Mesh Preview" class="unity-foldout__toggle foldout-toggle" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="Content" class="content">
+                            <uie:FloatField label="Preview Height" value="42.2" name="meshPreviewHeight" style="flex-shrink: 1;" />
+                            <ui:Toggle name="ShowInformationOnPreview" view-data-key="showInformationOnPreviewDataKey" label="Mesh Details" tooltip="This shows the mesh details inside the preview" style="flex-wrap: nowrap;" />
+                            <ui:Toggle name="ShowAssetLocationBelowPreview" label="Mesh Asset Location" tooltip="This shows the mesh location below the mesh picker" style="flex-wrap: nowrap;" />
+                            <ui:Toggle label="Runtime Memory Usage" name="ShowRuntimeMemoryUsageBelowPreview" />
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="InformationFoldoutSettingsFoldout" class="custom-foldout" style="display: flex;">
+                        <ui:GroupBox name="Header" class="header">
+                            <ui:Toggle name="ShowMeshDetailsInFoldoutToggle" style="flex-wrap: nowrap; flex-direction: row-reverse;" />
+                            <ui:Toggle name="FoldoutToggle" view-data-key="foldoutMeshPreview" text="Information Foldout" class="unity-foldout__toggle foldout-toggle" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="Content" class="content">
+                            <ui:Toggle label="Mesh Asset Location " name="ShowAssetLocationInFoldout" tooltip="This shows the mesh asset location in the information foldout" />
+                            <ui:Toggle label="Runtime Memory Usage" name="ShowRuntimeMemoryUsageInFoldout" />
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="MeshDetailsSettingsFoldout" class="custom-foldout" style="display: flex;">
+                        <ui:GroupBox name="Header" class="header">
+                            <ui:Toggle name="FoldoutToggle" view-data-key="foldoutMeshPreview" text="Mesh Details" class="unity-foldout__toggle foldout-toggle" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="Content" class="content">
+                            <ui:Toggle label="Vertex" name="showVertextCount" />
+                            <ui:Toggle label="Triangle" name="showTriangleCount" />
+                            <ui:Toggle label="Face" name="showFaceCount" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                            <ui:Toggle label="Tangent" name="showTangentCount" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: flex-start; margin-top: 2px;">
+                                <ui:Toggle label="Edge" name="showEdgeCount" tooltip="For high poly mesheshes, counting edges can reduce inspector performance." style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px; flex-direction: row; align-items: stretch; flex-grow: 1; max-width: 217px;" />
+                                <ui:Label display-tooltip-when-elided="true" tooltip="For high poly mesheshes, counting edges can reduce inspector performance." class="warning-icon" style="width: 15px; height: 15px;" />
+                            </ui:VisualElement>
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="ActionSettingsFoldout" class="custom-foldout" style="display: flex;">
+                        <ui:GroupBox name="Header" class="header">
+                            <ui:Toggle name="showActionsFoldout" view-data-key="showActionsFoldoutDataKey" class="foldoutHeaderToggle" style="flex-direction: row-reverse;" />
+                            <ui:Toggle name="FoldoutToggle" view-data-key="foldoutMeshPreview" text="Action Buttons" class="unity-foldout__toggle foldout-toggle" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="Content" class="content">
+                            <ui:Toggle label="Recalculate Normals" name="RecalculateNormals" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                            <ui:Toggle label="Recalculate Tangents" name="RecalculateTangents" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                            <ui:Toggle label="Flip Normals" name="FlipNormals" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                            <ui:Toggle label="Generate Secondary UV Set" name="GenerateSecondaryUVSet" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                            <ui:Toggle label="Smooth Shading" name="SmoothShading" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px; display: none;" />
+                            <ui:Toggle label="Export Mesh" name="SaveMeshAs" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px; display: flex;" />
+                            <ui:Toggle label="Load Mesh from Asset" name="LoadMeshFromAsset" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px; display: none;" />
+                            <ui:Toggle label="Optimize Mesh" name="OptimizeMesh" style="margin-top: 3px; margin-left: 3px; margin-right: 3px; margin-bottom: 3px;" />
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                    <ui:Toggle label="Size Foldout" name="ShowMeshSize" />
+                    <ui:Toggle label="Gizmo Foldout" name="showDebugGizmoFoldout" />
+                    <ui:Button text="Scale Settings" display-tooltip-when-elided="true" name="ScaleSettingsButton" class="myButton" style="margin-top: 10px;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox name="Informations" class="custom-foldout" style="display: none;">
+                <ui:GroupBox name="Header" class="header">
+                    <ui:Toggle name="FoldoutToggle" text="Informations" view-data-key="foldoutInformation" tooltip="Mesh data is represented differently in different 3D applications, which can lead to slight differences in mesh information between external application and Unity. It shouldn&apos;t be big though." class="unity-foldout__toggle foldout-toggle" />
+                </ui:GroupBox>
+                <ui:GroupBox name="Content" class="content" style="display: flex; opacity: 1; flex-direction: column; flex-shrink: 1;">
+                    <ui:Instance template="MeshDataGroup" name="MeshDataGroup" style="margin-bottom: 5px;" />
+                    <ui:GroupBox name="AssetLocationInFoldoutGroupBox" style="flex-direction: row; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-wrap: wrap;">
+                        <ui:Label text="Asset Location" display-tooltip-when-elided="true" class="unfocusedLabel" />
+                        <ui:Label text="LocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocationLocation" display-tooltip-when-elided="true" name="assetLocation" style="white-space: normal; flex-shrink: 1; overflow: hidden;" />
+                    </ui:GroupBox>
+                    <ui:GroupBox tooltip="Tthe total runtime memory used by an object, including data stored on both the CPU and GPU, as well as any overhead like alignment or padding. It’s useful for understanding an object’s actual memory footprint. Click learn more for more information." name="RuntimeMemoryUsageInInformation" style="flex-direction: row; margin-left: 5px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                        <ui:Label text="Runtime Memory Usage" display-tooltip-when-elided="true" class="unfocusedLabel" />
+                        <ui:Label text="Memory Usage" display-tooltip-when-elided="true" name="MemoryUsageInFoldout" style="white-space: normal; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; flex-grow: 1;" />
+                        <ui:Button text="Learn More" display-tooltip-when-elided="true" name="RuntimeMemoryUsageExplaination" tooltip="Click to open documentation" class="unfocusedButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                    </ui:GroupBox>
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox name="MeshSize" class="custom-foldout" style="display: flex;">
+                <ui:GroupBox name="Header" class="header">
+                    <ui:Toggle name="FoldoutToggle" text="Base Size" view-data-key="foldoutMeshSize" tooltip="This is the base size of the mesh at a scale of 1. Meter is the default scale of Unity." class="unity-foldout__toggle foldout-toggle" />
+                    <ui:GroupBox style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; justify-content: center;">
+                        <ui:DropdownField index="0" name="MeshUnit" choices="Unit" class="toolbar-popup-field" style="margin-right: 0; margin-left: 0; margin-top: 0; margin-bottom: 0; height: 18px; -unity-font-style: normal; font-size: 11px; min-width: 70px; background-color: rgba(255, 255, 255, 0.08);" />
+                    </ui:GroupBox>
+                </ui:GroupBox>
+                <ui:GroupBox name="Content" class="content">
+                    <ui:Instance template="MeshSize" name="MeshSize" />
+                    <ui:Label text="Size" display-tooltip-when-elided="true" name="Size" style="white-space: normal; display: none;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox name="Buttons" class="custom-foldout" style="display: none;">
+                <ui:GroupBox name="Header" class="header">
+                    <ui:Toggle name="FoldoutToggle" text="Actions" view-data-key="foldoutButtons" class="unity-foldout__toggle foldout-toggle" />
+                </ui:GroupBox>
+                <ui:GroupBox name="Content" class="content">
+                    <ui:VisualElement name="Seperator" />
+                    <ui:Toggle label="Do not apply actions to asset, use instance" value="true" tooltip="If turned on, when using the buttons below, a instance of the mesh is created and the modification is applied to that one. If turned off, if the mesh is an asset, the asset is modified. If you are unsure, just leave it turned on." name="doNotApplyActionToAsset" style="-unity-font-style: normal; font-size: 11px; margin-left: 12px; flex-grow: 1;" />
+                    <ui:GroupBox style="flex-direction: row; flex-wrap: wrap; transition-duration: 1s; flex-shrink: initial; flex-grow: initial; flex-basis: 100%; justify-content: flex-end;">
+                        <ui:Button text="Optimize Mesh" display-tooltip-when-elided="true" name="OptimizeMesh" tooltip="Optimizes the Mesh data to improve rendering performance.  You should only use this function on meshes you generate procedurally in code, for regular mesh assets it is called automatically by the import pipeline when &apos;Optimize Mesh&apos; is enabled in the mesh importer setting. This function causes the geometry and vertices of the mesh to be reordered internally in an attempt to improve vertex cache utilisation on the graphics hardware and thus rendering performance. This operation can take a few seconds or more for complex meshes and should only be used where the ordering of the geometry and vertices is not significant as both will change.  " class="myButton" />
+                        <ui:Button text="Recalculate Normals" display-tooltip-when-elided="true" name="RecalculateNormals" tooltip="Recalculates the normals of the Mesh from the triangles and vertices. Note that RecalculateNormals does not generate tangents automatically, to do that use RecalculateTangents." class="myButton" />
+                        <ui:Button text="Recalculate Tangents" display-tooltip-when-elided="true" name="RecalculateTangents" tooltip="Recalculates the tangents of the Mesh from the normals and texture coordinates. After modifying the vertices and the normals of the Mesh, tangents need to be updated if the Mesh is rendered using Shaders that reference normal maps. Unity calculates tangents using the vertex positions, normals and texture coordinates of the Mesh." class="myButton" />
+                        <ui:Button text="Flip Normals" display-tooltip-when-elided="true" name="FlipNormals" tooltip="Flips the direction of the normals." class="myButton" />
+                        <ui:Button text="Subdivide Mesh" display-tooltip-when-elided="true" name="subDivideMesh" tooltip="Save the current mesh as an asset" class="myButton" style="display: none;" />
+                        <ui:Button text="Export mesh" display-tooltip-when-elided="true" name="exportMesh" tooltip="Save the current mesh as an asset" class="myButton" />
+                    </ui:GroupBox>
+                    <ui:GroupBox name="GenerateSecondaryUVsetGroupBox" class="custom-foldout" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
+                        <ui:GroupBox name="Header" class="header">
+                            <ui:Toggle name="FoldoutToggle" text="Generate Lightmap UVs" view-data-key="GenerateSecondaryUVsetButton" class="unity-foldout__toggle foldout-toggle" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="Content" class="content">
+                            <ui:Label text="Compute a unique UV layout for a Mesh, and store it in Mesh.uv2. This is useful for static lightnings.&#10;&#10;When you import a model asset, the Model Import Settings inspector can do this.&#10;This function is mostly useful for procedurally generated meshes.&#10;" tooltip="If this process requires multiple UV charts to flatten the the mesh, the mesh might contain more vertices than before. If the mesh uses 16-bit indices (see Mesh.indexFormat) and the process would result in more vertices than are possible to use with 16-bit indices, this function fails and returns false. " class="unimportant-information-label" style="white-space: normal; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 10px; margin-left: 5px;" />
+                            <ui:GroupBox tooltip="Advanced settings for lightmap UV generation." style="margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                                <ui:GroupBox style="align-items: flex-end; margin-top: 0; margin-right: 0; margin-bottom: 5px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                                    <ui:Button text="Reset Settings" display-tooltip-when-elided="true" name="ResetGenerateSecondaryUVSetButton" class="myButton" style="min-height: auto;" />
+                                </ui:GroupBox>
+                                <ui:SliderInt label="Hard Angle" value="88" high-value="180" tooltip="Angle between neighbor triangles that will generate seam." view-data-key="HardAngle" name="HardAngleSlider" fill="true" show-input-field="true" />
+                                <ui:SliderInt label="Angle Error" value="7" high-value="75" tooltip="Measured in percents. Angle error measures deviation of UV angles from geometry angles. " low-value="1" view-data-key="AngleError" name="AngleErrorSlider" fill="true" show-input-field="true" />
+                                <ui:SliderInt label="Area Error" value="13" high-value="75" low-value="1" tooltip="Measured in percents. Area error measures deviation of UV triangles area from geometry triangles if they were uniformly scaled." name="AreaErrorSlider" view-data-key="AreaError" show-input-field="true" fill="true" />
+                                <ui:SliderInt label="Pack Margin" value="1" high-value="64" low-value="1" tooltip="How much uv-islands will be padded. Measured in pixels assumingg mesh will cover an entire 1024x1024 lightmap." view-data-key="PackMargin" name="PackMarginSlider" fill="true" show-input-field="true" />
+                            </ui:GroupBox>
+                            <ui:Button text="Generate" display-tooltip-when-elided="true" name="GenerateSecondaryUVSet" tooltip="Generate Secondary UV Set" class="myButton" />
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox name="MeshDebug" class="custom-foldout" style="display: flex;">
+                <ui:GroupBox name="Header" class="header">
+                    <ui:Toggle name="FoldoutToggle" text="Debug Gizmo" view-data-key="foldoutDebug" tooltip="You can turn on gizmos to debug your mesh" class="unity-foldout__toggle foldout-toggle" />
+                </ui:GroupBox>
+                <ui:GroupBox name="Content" class="content" style="overflow: visible;">
+                    <ui:GroupBox name="CheckeredUV" class="title" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 10px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-direction: row;">
+                        <ui:GroupBox name="LeftSide" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; align-items: center; justify-content: center;">
+                            <ui:Button text="Set Checkerd UV" display-tooltip-when-elided="true" name="setCheckeredUV" tooltip="Please note that overusing this may create large scene files." class="myButton" style="margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; height: auto; min-height: 40px; flex-grow: 1;" />
+                        </ui:GroupBox>
+                        <ui:GroupBox name="RightSide" style="margin-left: 5px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 1; justify-content: center; flex-grow: 1;">
+                            <ui:GroupBox style="flex-direction: row; min-height: auto; min-width: auto; flex-grow: 1; align-items: center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                                <ui:Label text="Texture Size" display-tooltip-when-elided="true" tooltip="Checkererd Texture width and height" />
+                                <uie:IntegerField value="128" name="UVWidth" view-data-key="UVWidthDataKey" style="flex-grow: 1; flex-shrink: 1;" />
+                                <uie:IntegerField value="128" name="UVHeight" view-data-key="UVHeightDataKey" style="flex-shrink: 1; flex-grow: 1;" />
+                            </ui:GroupBox>
+                            <ui:GroupBox style="flex-direction: row; min-height: auto; min-width: auto; flex-grow: 1; align-items: center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+                                <ui:Label text="Cell Size" display-tooltip-when-elided="true" tooltip="Keep the size lower that the width and height. " />
+                                <uie:IntegerField value="16" name="UVCellSize" view-data-key="UVCellSizeDataKey" text="Memory Usage" tooltip="If drawing gizmo takes longer than this, it will be stopped." style="flex-shrink: 1; flex-grow: 1;" />
+                            </ui:GroupBox>
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                    <ui:Toggle label="Show Normals" name="showNormals" view-data-key="showNormalsKey" style="margin-top: 5px;" />
+                    <uie:FloatField label="Length" value="0.1" name="normalLength" view-data-key="normalLengthDataKey" style="margin-left: 20px;" />
+                    <uie:FloatField label="Width" value="5" name="normalWidth" view-data-key="normalWidthDataKey" style="margin-left: 20px;" />
+                    <uie:ColorField label="Color" value="#00ABFFFF" name="normalColor" view-data-key="normalColorDataKey" style="margin-left: 20px;" />
+                    <ui:Toggle label="Show Tangents" name="showTangents" view-data-key="showTangentsKey" style="margin-top: 5px;" />
+                    <uie:FloatField label="Length" value="0.1" name="tangentLength" view-data-key="tangentLengthDataKey" style="margin-left: 20px;" />
+                    <uie:FloatField label="Width" value="5" name="tangentWidth" view-data-key="tangentWidthDataKey" style="margin-left: 20px;" />
+                    <uie:ColorField label="Color" value="#CF3A00FF" name="tangentColor" view-data-key="tangentColorDataKey" style="margin-left: 20px;" />
+                    <ui:Toggle label="Show UV Seam" name="showUV" view-data-key="showUVKey" tooltip="Please note that is isn&apos;t UV Layouts" style="margin-top: 5px; width: auto;" />
+                    <uie:FloatField label="Width" value="0.1" name="uvWidth" view-data-key="uvWidthDataKey" style="margin-left: 20px;" />
+                    <uie:ColorField label="Color" value="#27D600FF" name="uvColor" view-data-key="uvColorDataKey" style="margin-left: 20px;" />
+                    <ui:Label display-tooltip-when-elided="true" name="LastDrawnGizmosWith" tooltip="When gizmos are on, information about them will be drawn here." style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; white-space: normal; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; -unity-text-align: middle-center; background-color: rgba(0, 90, 147, 0.2); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
+                    <ui:Label text="Settings" display-tooltip-when-elided="true" style="-unity-font-style: bold; border-bottom-width: 1px; border-bottom-color: rgba(255, 255, 255, 0.2); margin-top: 10px; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; margin-bottom: 2px;" />
+                    <ui:Toggle label="Use Anti-Aliased Gizmos" name="UseAntiAliasedGizmosField" tooltip="Better looking gizmo lines at the cost of performance." />
+                    <uie:IntegerField label="Maximum Gizmo Draw Time " value="42" name="MaximumGizmoDrawTimeField" tooltip="If drawing gizmo takes longer than this, it will be stopped. This value can&apos;t be less than 10 and can&apos;t be more than 10000. A lower number will garuntee better performance at the cost of some missing gizmos. If any gimzo failed to draw because of this, it will be written on the status label above." />
+                    <ui:GroupBox name="InfoBox" style="background-color: rgba(255, 255, 255, 0.04); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; flex-direction: row; border-left-color: rgba(0, 0, 0, 0.4); border-right-color: rgba(0, 0, 0, 0.4); border-top-color: rgba(0, 0, 0, 0.4); border-bottom-color: rgba(0, 0, 0, 0.4);">
+                        <ui:VisualElement class="warning-icon" style="width: 24px; height: 24px; margin-right: 5px;" />
+                        <ui:GroupBox name="RightSide" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-shrink: 1; justify-content: center; flex-grow: 1;">
+                            <ui:Label text="Turn off gizmos when not needed" display-tooltip-when-elided="true" tooltip="For high poly meshes, the debug gizmos can impact performance." style="-unity-font-style: bold; font-size: 12px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; white-space: normal;" />
+                            <ui:Label text="For high poly mesheshes, the debug gizmos can impact performance." display-tooltip-when-elided="true" style="font-size: 10px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; white-space: normal;" />
+                        </ui:GroupBox>
+                    </ui:GroupBox>
+                </ui:GroupBox>
+            </ui:GroupBox>
+        </ui:VisualElement>
+    </ui:GroupBox>
+</ui:UXML>

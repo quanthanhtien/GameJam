@@ -1,0 +1,31 @@
+.myButton {
+    -unity-font-style: italic;
+    transition-duration: 0.15s;
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgb(89, 89, 89);
+    overflow: visible;
+    white-space: normal;
+    flex-wrap: wrap;
+    min-height: 30px;
+}
+
+.myButton:hover {
+    scale: 1.025 1.05;
+}
+
+.myButton:active {
+    -unity-background-image-tint-color: rgb(64, 157, 214);
+}
+
+.rotatingButton {
+    transition-duration: 0.25s;
+}
+
+.rotatingButton:hover {
+    scale: 1.1 1.1;
+    rotate: 90deg;
+}
+
+.rotatingButton:active {
+    scale: 1.05 1.05;
+}

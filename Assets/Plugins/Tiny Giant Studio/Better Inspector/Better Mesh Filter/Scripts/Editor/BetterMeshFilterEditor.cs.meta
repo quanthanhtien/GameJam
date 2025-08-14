@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2d7b78476e7fc5443b2ddfb466a59b64
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visualTreeAsset: {fileID: 9197481963319205126, guid: bb16fd1ddd2f41648b64223b6c226839,
+      type: 3}
+  - checkerMaterial: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 266489
+  packageName: Better Mesh Filter - Mesh Preview & Full-insight at a glance
+  packageVersion: 1.9.0
+  assetPath: Assets/Plugins/Tiny Giant Studio/Better Inspector/Better Mesh Filter/Scripts/Editor/BetterMeshFilterEditor.cs
+  uploadId: 737717

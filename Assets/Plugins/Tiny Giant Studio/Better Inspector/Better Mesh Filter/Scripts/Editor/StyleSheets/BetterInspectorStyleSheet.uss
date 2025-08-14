@@ -1,0 +1,38 @@
+.meshInformationItem {
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: rgb(56, 56, 56);
+}
+
+.unfocusedLabel {
+    -unity-text-align: middle-left;
+    -unity-font-style: italic;
+    opacity: 0.7;
+    overflow: hidden;
+}
+
+.unfocusedButton {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0.5;
+    font-size: 10px;
+    transition-duration: 0.2s;
+    -unity-font-style: italic;
+}
+
+.unfocusedButton:hover {
+    opacity: 1;
+}

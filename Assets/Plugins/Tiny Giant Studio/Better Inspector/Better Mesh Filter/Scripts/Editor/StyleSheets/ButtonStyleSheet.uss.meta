@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fd70bd767c8c1f848b3bc60b978e77a7
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 266489
+  packageName: Better Mesh Filter - Mesh Preview & Full-insight at a glance
+  packageVersion: 1.9.0
+  assetPath: Assets/Plugins/Tiny Giant Studio/Better Inspector/Better Mesh Filter/Scripts/Editor/StyleSheets/ButtonStyleSheet.uss
+  uploadId: 737717

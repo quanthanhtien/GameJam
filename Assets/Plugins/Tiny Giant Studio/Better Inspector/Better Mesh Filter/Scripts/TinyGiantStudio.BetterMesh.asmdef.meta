@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c5599297241c7ca4883491777ff9691c
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 266489
+  packageName: Better Mesh Filter - Mesh Preview & Full-insight at a glance
+  packageVersion: 1.9.0
+  assetPath: Assets/Plugins/Tiny Giant Studio/Better Inspector/Better Mesh Filter/Scripts/TinyGiantStudio.BetterMesh.asmdef
+  uploadId: 737717
