@@ -1,273 +1,157 @@
-// Box.cs - Với hiệu ứng skill
-
 using System.Collections;
 using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    [Header("Box Settings")]
-    public float perfectThreshold = 0.3f;
-    
-    [HideInInspector] public bool hasLanded = false;
     public Player ownerPlayer;
-    private Rigidbody2D rb;
-    private bool isSwaying = false;
-    private SpriteRenderer spriteRenderer;
+    public bool hasLanded = false;
+
+    private SpriteRenderer sr;
     private Color originalColor;
-    private bool isFlashing = false;
-    
-    private void Start()
+    private Rigidbody2D rb;
+
+    private void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
+        if (sr != null)
+            originalColor = sr.color;
     }
-    
-    public void Initialize(Player owner)
+
+    public void Initialize(Player player)
     {
-        ownerPlayer = owner;
-        
-        // Add slight random force để tránh box overlap
-        if (rb != null)
-        {
-            float randomForce = Random.Range(-0.3f, 0.3f);
-            rb.AddForce(Vector2.right * randomForce, ForceMode2D.Impulse);
-        }
+        ownerPlayer = player;
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (hasLanded) return;
-        
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Box"))
-        {
-            hasLanded = true;
-            
-            // Stop physics movement
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-            }
-            
-            // Add to tower
-            if (ownerPlayer != null)
-            {
-                ownerPlayer.AddBlockToTower(gameObject);
-            }
-            
-            // Check for perfect placement
-            if (collision.gameObject.CompareTag("Box"))
-            {
-                CheckPerfectPlacement(collision.gameObject);
-            }
-            
-            Debug.Log($"Box from {ownerPlayer?.gameObject.name} landed!");
-        }
+        SoundManager.Play("drop");
+        hasLanded = true;
+        if (ownerPlayer != null)
+            ownerPlayer.AddBlockToTower(gameObject);
     }
-    
-    private void CheckPerfectPlacement(GameObject otherBox)
+
+    public void StartFreezeEffect(float duration)
     {
-        Box otherBoxScript = otherBox.GetComponent<Box>();
-        if (otherBoxScript != null && otherBoxScript.ownerPlayer == ownerPlayer)
-        {
-            // Check horizontal alignment
-            float horizontalDistance = Mathf.Abs(transform.position.x - otherBox.transform.position.x);
-            
-            // Check if placement is perfect
-            if (horizontalDistance <= perfectThreshold)
-            {
-                // Perfect placement!
-                if (ownerPlayer != null)
-                {
-                    ownerPlayer.OnPerfectStack();
-                }
-                
-                // Visual feedback
-                StartCoroutine(PerfectEffect());
-                Debug.Log($"PERFECT STACK! {ownerPlayer?.gameObject.name}");
-            }
-            else
-            {
-                // Imperfect placement
-                if (ownerPlayer != null)
-                {
-                    ownerPlayer.OnImperfectStack();
-                }
-                Debug.Log($"Imperfect stack. Distance: {horizontalDistance:F2}");
-            }
-        }
+        StartCoroutine(FreezeEffectRoutine(duration));
     }
-    
-    private IEnumerator PerfectEffect()
+
+    private IEnumerator FreezeEffectRoutine(float duration)
     {
-        // Simple visual effect for perfect placement
-        if (spriteRenderer != null)
+        // Tạm dừng physics trong khi freeze
+        if (rb != null)
         {
-            Color originalColor = spriteRenderer.color;
-            spriteRenderer.color = Color.green;
-            yield return new WaitForSeconds(0.5f);
-            spriteRenderer.color = originalColor;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-    }
-    
-    public void StartSway(float duration)
-    {
-        if (!hasLanded && !isSwaying)
+
+        float elapsed = 0f;
+        while (elapsed < duration)
         {
-            StartCoroutine(SwayEffect(duration));
+            if (sr != null)
+                sr.color = Color.Lerp(originalColor, Color.cyan, Mathf.PingPong(elapsed * 5f, 1f));
+            elapsed += Time.deltaTime;
+            yield return null;
         }
+
+        // Khôi phục physics
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+
+        if (sr != null) sr.color = originalColor;
     }
-    
-    private IEnumerator SwayEffect(float duration)
+
+    public void StartEarthquakeEffect(float duration)
     {
-        isSwaying = true;
+        StartCoroutine(EarthquakeEffectRoutine(duration));
+    }
+
+    private IEnumerator EarthquakeEffectRoutine(float duration)
+    {
         float elapsed = 0f;
         Vector3 startPos = transform.position;
         
-        while (elapsed < duration && !hasLanded)
+        // Hiệu ứng màu đỏ để báo hiệu sẽ bị phá hủy
+        if (sr != null)
         {
-            float swayAmount = Mathf.Sin(elapsed * 8f) * 0.8f;
-            transform.position = startPos + Vector3.right * swayAmount;
+            StartCoroutine(FlashRed(duration));
+        }
+
+        while (elapsed < duration)
+        {
+            // Shake mạnh hơn để thể hiện earthquake
+            transform.position = startPos + (Vector3)Random.insideUnitCircle * 0.2f;
             elapsed += Time.deltaTime;
             yield return null;
         }
         
-        isSwaying = false;
+        transform.position = startPos;
     }
-    
-    // Tornado shake effect for all boxes (both landed and falling)
+
+    private IEnumerator FlashRed(float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            if (sr != null)
+                sr.color = Color.Lerp(originalColor, Color.red, Mathf.PingPong(elapsed * 8f, 1f));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        if (sr != null) sr.color = originalColor;
+    }
+
     public void StartTornadoShake(float duration)
     {
-        StartCoroutine(TornadoShakeEffect(duration));
+        StartCoroutine(TornadoShakeRoutine(duration));
     }
-    
-    private IEnumerator TornadoShakeEffect(float duration)
+
+    private IEnumerator TornadoShakeRoutine(float duration)
     {
         float elapsed = 0f;
-        Vector3 originalPos = transform.position;
+        Vector3 startPos = transform.position;
         
+        // Hiệu ứng màu vàng cho tornado
+        if (sr != null)
+        {
+            StartCoroutine(FlashYellow(duration));
+        }
+
         while (elapsed < duration)
         {
-            float shakeAmount = 0.3f;
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-shakeAmount, shakeAmount),
-                Random.Range(-shakeAmount, shakeAmount),
-                0f
-            );
-            
-            transform.position = originalPos + randomOffset;
-            elapsed += Time.deltaTime;
-            yield return new WaitForSeconds(0.05f); // Shake frequency
-        }
-        
-        transform.position = originalPos;
-    }
-    
-    // Skill Effects
-    public void StartFreezeEffect(float duration)
-    {
-        if (!isFlashing)
-        {
-            StartCoroutine(FreezeFlashEffect(duration));
-        }
-    }
-    
-    public void StartEarthquakeEffect(float duration)
-    {
-        if (!isFlashing)
-        {
-            StartCoroutine(EarthquakeFlashEffect(duration));
-        }
-    }
-    
-    public void StartTornadoEffect(float duration)
-    {
-        if (!isFlashing)
-        {
-            StartCoroutine(TornadoFlashEffect(duration));
-        }
-    }
-    
-    private IEnumerator FreezeFlashEffect(float duration)
-    {
-        isFlashing = true;
-        float elapsed = 0f;
-        
-        while (elapsed < duration)
-        {
-            // Flash between original color and cyan (ice blue)
-            spriteRenderer.color = Color.Lerp(originalColor, Color.cyan, Mathf.PingPong(elapsed * 8f, 1f));
+            // Chuyển động xoắn ốc như tornado
+            float angle = elapsed * 15f; // Tốc độ xoay
+            float radius = 0.15f * Mathf.Sin(elapsed * 10f); // Bán kính dao động
+            Vector3 offset = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle * 0.5f) * 0.1f, 0);
+            transform.position = startPos + offset;
             elapsed += Time.deltaTime;
             yield return null;
         }
         
-        spriteRenderer.color = originalColor;
-        isFlashing = false;
+        transform.position = startPos;
     }
-    
-    private IEnumerator EarthquakeFlashEffect(float duration)
+
+    private IEnumerator FlashYellow(float duration)
     {
-        isFlashing = true;
         float elapsed = 0f;
-        Vector3 originalPosition = transform.position;
-        
         while (elapsed < duration)
         {
-            // Flash between original color and red/brown
-            spriteRenderer.color = Color.Lerp(originalColor, new Color(0.8f, 0.4f, 0.2f), Mathf.PingPong(elapsed * 6f, 1f));
-            
-            // Add small shake effect if landed
-            if (hasLanded)
-            {
-                float shakeAmount = 0.1f;
-                transform.position = originalPosition + new Vector3(
-                    Random.Range(-shakeAmount, shakeAmount),
-                    Random.Range(-shakeAmount, shakeAmount),
-                    0f
-                );
-            }
-            
+            if (sr != null)
+                sr.color = Color.Lerp(originalColor, Color.yellow, Mathf.PingPong(elapsed * 6f, 1f));
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
-        spriteRenderer.color = originalColor;
-        if (hasLanded)
-        {
-            transform.position = originalPosition;
-        }
-        isFlashing = false;
+        if (sr != null) sr.color = originalColor;
     }
-    
-    private IEnumerator TornadoFlashEffect(float duration)
+
+    private void OnDestroy()
     {
-        isFlashing = true;
-        float elapsed = 0f;
-        
-        while (elapsed < duration)
+        // Cleanup khi block bị phá hủy
+        if (ownerPlayer != null && ownerPlayer.towerBlocks != null)
         {
-            // Flash between original color and yellow/white (wind effect)
-            Color windColor = Color.Lerp(Color.yellow, Color.white, Mathf.PingPong(elapsed * 4f, 1f));
-            spriteRenderer.color = Color.Lerp(originalColor, windColor, Mathf.PingPong(elapsed * 10f, 1f));
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        
-        spriteRenderer.color = originalColor;
-        isFlashing = false;
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Destroy box if it falls out of bounds
-        if (other.CompareTag("DestroyZone"))
-        {
-            if (ownerPlayer != null && ownerPlayer.avatar.IsMe)
-            {
-                ownerPlayer.OnImperfectStack(); // Reset perfect streak
-            }
-            Destroy(gameObject);
+            ownerPlayer.towerBlocks.Remove(gameObject);
         }
     }
 }
