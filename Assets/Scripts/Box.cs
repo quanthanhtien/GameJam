@@ -9,7 +9,7 @@ public class Box : MonoBehaviour
     public float perfectThreshold = 0.3f;
     
     [HideInInspector] public bool hasLanded = false;
-    private Player ownerPlayer;
+    public Player ownerPlayer;
     private Rigidbody2D rb;
     private bool isSwaying = false;
     private SpriteRenderer spriteRenderer;
@@ -134,6 +134,34 @@ public class Box : MonoBehaviour
         }
         
         isSwaying = false;
+    }
+    
+    // Tornado shake effect for all boxes (both landed and falling)
+    public void StartTornadoShake(float duration)
+    {
+        StartCoroutine(TornadoShakeEffect(duration));
+    }
+    
+    private IEnumerator TornadoShakeEffect(float duration)
+    {
+        float elapsed = 0f;
+        Vector3 originalPos = transform.position;
+        
+        while (elapsed < duration)
+        {
+            float shakeAmount = 0.3f;
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-shakeAmount, shakeAmount),
+                Random.Range(-shakeAmount, shakeAmount),
+                0f
+            );
+            
+            transform.position = originalPos + randomOffset;
+            elapsed += Time.deltaTime;
+            yield return new WaitForSeconds(0.05f); // Shake frequency
+        }
+        
+        transform.position = originalPos;
     }
     
     // Skill Effects

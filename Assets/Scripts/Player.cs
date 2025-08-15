@@ -249,9 +249,8 @@ public class Player : AttributesSync
     private IEnumerator FreezeAllOpponents()
     {
         Player[] allPlayers = FindObjectsOfType<Player>();
-        Box[] allBoxes = FindObjectsOfType<Box>();
         
-        // Flash effect on opponents and their boxes
+        // Freeze opponents only
         foreach (Player player in allPlayers)
         {
             if (player != this)
@@ -261,18 +260,26 @@ public class Player : AttributesSync
                 {
                     player.StartCoroutine(player.PlayerSkillFlash(Color.cyan, 2f));
                 }
+                
+                // Flash effect on opponent's boxes only
+                foreach (GameObject block in player.towerBlocks)
+                {
+                    if (block != null)
+                    {
+                        Box boxScript = block.GetComponent<Box>();
+                        if (boxScript != null)
+                        {
+                            boxScript.StartFreezeEffect(2f);
+                        }
+                    }
+                }
             }
-        }
-        
-        // Flash effect on all boxes
-        foreach (Box box in allBoxes)
-        {
-            box.StartFreezeEffect(2f);
         }
         
         Debug.Log("Freeze activated!");
         yield return new WaitForSeconds(2f);
         
+        // Unfreeze opponents
         foreach (Player player in allPlayers)
         {
             if (player != this)
@@ -286,35 +293,44 @@ public class Player : AttributesSync
     {
         Debug.Log("Earthquake activated!");
         Player[] allPlayers = FindObjectsOfType<Player>();
-        Box[] allBoxes = FindObjectsOfType<Box>();
         
-        // Flash effect on all boxes
-        foreach (Box box in allBoxes)
-        {
-            box.StartEarthquakeEffect(2f);
-        }
-        
-        // Flash effect on opponents
+        // Apply earthquake to opponents only
         foreach (Player player in allPlayers)
         {
-            if (player != this)
+            if (player != this && player.towerBlocks.Count > 0)
             {
+                // Flash effect on opponent
                 if (!player.isPlayerFlashing)
                 {
                     player.StartCoroutine(player.PlayerSkillFlash(new Color(0.8f, 0.4f, 0.2f), 2f));
                 }
                 
-                // Remove blocks
-                if (player.towerBlocks.Count > 0)
+                // Randomly destroy 1 block from opponent's tower
+                int randomIndex = Random.Range(0, player.towerBlocks.Count);
+                GameObject blockToDestroy = player.towerBlocks[randomIndex];
+                
+                if (blockToDestroy != null)
                 {
-                    int blocksToRemove = Random.Range(1, 4);
-                    for (int i = 0; i < blocksToRemove && player.towerBlocks.Count > 0; i++)
+                    // Flash effect on the block before destroying
+                    Box boxScript = blockToDestroy.GetComponent<Box>();
+                    if (boxScript != null)
                     {
-                        int randomIndex = Random.Range(0, player.towerBlocks.Count);
-                        if (player.towerBlocks[randomIndex] != null)
+                        boxScript.StartEarthquakeEffect(1f);
+                    }
+                    
+                    // Destroy after a short delay
+                    StartCoroutine(DestroyBlockAfterDelay(player, blockToDestroy, randomIndex, 1f));
+                }
+                
+                // Flash effect on remaining opponent's boxes
+                foreach (GameObject block in player.towerBlocks)
+                {
+                    if (block != null && block != blockToDestroy)
+                    {
+                        Box boxScript = block.GetComponent<Box>();
+                        if (boxScript != null)
                         {
-                            Destroy(player.towerBlocks[randomIndex]);
-                            player.towerBlocks.RemoveAt(randomIndex);
+                            boxScript.StartEarthquakeEffect(2f);
                         }
                     }
                 }
@@ -323,28 +339,62 @@ public class Player : AttributesSync
         yield return null;
     }
     
+    private IEnumerator DestroyBlockAfterDelay(Player player, GameObject block, int index, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (block != null && player.towerBlocks.Contains(block))
+        {
+            Destroy(block);
+            player.towerBlocks.RemoveAt(index);
+            Debug.Log($"Earthquake destroyed a block from {player.gameObject.name}!");
+        }
+    }
+    
     private IEnumerator TornadoEffect()
     {
         Debug.Log("Tornado activated!");
-        Box[] allBoxes = FindObjectsOfType<Box>();
         Player[] allPlayers = FindObjectsOfType<Player>();
         
-        // Flash effect on all boxes and make them sway
-        foreach (Box box in allBoxes)
-        {
-            if (!box.hasLanded)
-            {
-                box.StartSway(2f);
-            }
-            box.StartTornadoEffect(2f);
-        }
-        
-        // Flash effect on all players
+        // Apply tornado to opponents only
         foreach (Player player in allPlayers)
         {
-            if (player != this && !player.isPlayerFlashing)
+            if (player != this)
             {
-                player.StartCoroutine(player.PlayerSkillFlash(Color.yellow, 2f));
+                // Flash effect on opponent
+                if (!player.isPlayerFlashing)
+                {
+                    player.StartCoroutine(player.PlayerSkillFlash(Color.yellow, 2f));
+                }
+                
+                // Shake all opponent's boxes (both in tower and falling)
+                foreach (GameObject block in player.towerBlocks)
+                {
+                    if (block != null)
+                    {
+                        Box boxScript = block.GetComponent<Box>();
+                        if (boxScript != null)
+                        {
+                            boxScript.StartTornadoShake(2f);
+                            boxScript.StartTornadoEffect(2f);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Also affect any falling boxes from opponents
+        Box[] allBoxes = FindObjectsOfType<Box>();
+        foreach (Box box in allBoxes)
+        {
+            // Check if this box belongs to an opponent
+            if (box.GetComponent<Box>().ownerPlayer != this && box.GetComponent<Box>().ownerPlayer != null)
+            {
+                if (!box.hasLanded)
+                {
+                    box.StartSway(2f); // Only falling boxes sway
+                }
+                box.StartTornadoShake(2f); // All opponent boxes shake
+                box.StartTornadoEffect(2f); // Visual effect
             }
         }
         
