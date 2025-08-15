@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Alteruna;
 
-// Player.cs - Đơn giản, không auto set position
+// Player.cs - Với hiệu ứng skill
 public class Player : AttributesSync
 {
     [Header("Movement Settings")]
@@ -46,6 +46,8 @@ public class Player : AttributesSync
     private Vector3 targetPosition;
     private bool movingRight = true;
     private bool isFrozen = false;
+    private Color originalPlayerColor;
+    private bool isPlayerFlashing = false;
     
     // Game state
     private float currentMana;
@@ -57,6 +59,7 @@ public class Player : AttributesSync
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentMana = maxMana;
+        originalPlayerColor = spriteRenderer.color;
         
         // Sử dụng vị trí hiện tại làm startPosition
         startPosition = transform.position;
@@ -173,7 +176,46 @@ public class Player : AttributesSync
     {
         float cost = GetSkillCost(skillName);
         currentMana -= cost;
+        
+        // Start player flash effect when using skill
+        StartPlayerSkillEffect(skillName);
+        
         BroadcastRemoteMethod("ExecuteSkill", skillName);
+    }
+    
+    private void StartPlayerSkillEffect(string skillName)
+    {
+        if (!isPlayerFlashing)
+        {
+            switch (skillName)
+            {
+                case "Freeze":
+                    StartCoroutine(PlayerSkillFlash(Color.cyan, 1f));
+                    break;
+                case "Earthquake":
+                    StartCoroutine(PlayerSkillFlash(new Color(0.8f, 0.4f, 0.2f), 1f));
+                    break;
+                case "Tornado":
+                    StartCoroutine(PlayerSkillFlash(Color.yellow, 1f));
+                    break;
+            }
+        }
+    }
+    
+    private IEnumerator PlayerSkillFlash(Color skillColor, float duration)
+    {
+        isPlayerFlashing = true;
+        float elapsed = 0f;
+        
+        while (elapsed < duration)
+        {
+            spriteRenderer.color = Color.Lerp(originalPlayerColor, skillColor, Mathf.PingPong(elapsed * 6f, 1f));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        
+        spriteRenderer.color = originalPlayerColor;
+        isPlayerFlashing = false;
     }
     
     private float GetSkillCost(string skillName)
@@ -207,12 +249,25 @@ public class Player : AttributesSync
     private IEnumerator FreezeAllOpponents()
     {
         Player[] allPlayers = FindObjectsOfType<Player>();
+        Box[] allBoxes = FindObjectsOfType<Box>();
+        
+        // Flash effect on opponents and their boxes
         foreach (Player player in allPlayers)
         {
             if (player != this)
             {
                 player.isFrozen = true;
+                if (!player.isPlayerFlashing)
+                {
+                    player.StartCoroutine(player.PlayerSkillFlash(Color.cyan, 2f));
+                }
             }
+        }
+        
+        // Flash effect on all boxes
+        foreach (Box box in allBoxes)
+        {
+            box.StartFreezeEffect(2f);
         }
         
         Debug.Log("Freeze activated!");
@@ -231,19 +286,36 @@ public class Player : AttributesSync
     {
         Debug.Log("Earthquake activated!");
         Player[] allPlayers = FindObjectsOfType<Player>();
+        Box[] allBoxes = FindObjectsOfType<Box>();
         
+        // Flash effect on all boxes
+        foreach (Box box in allBoxes)
+        {
+            box.StartEarthquakeEffect(2f);
+        }
+        
+        // Flash effect on opponents
         foreach (Player player in allPlayers)
         {
-            if (player != this && player.towerBlocks.Count > 0)
+            if (player != this)
             {
-                int blocksToRemove = Random.Range(1, 4);
-                for (int i = 0; i < blocksToRemove && player.towerBlocks.Count > 0; i++)
+                if (!player.isPlayerFlashing)
                 {
-                    int randomIndex = Random.Range(0, player.towerBlocks.Count);
-                    if (player.towerBlocks[randomIndex] != null)
+                    player.StartCoroutine(player.PlayerSkillFlash(new Color(0.8f, 0.4f, 0.2f), 2f));
+                }
+                
+                // Remove blocks
+                if (player.towerBlocks.Count > 0)
+                {
+                    int blocksToRemove = Random.Range(1, 4);
+                    for (int i = 0; i < blocksToRemove && player.towerBlocks.Count > 0; i++)
                     {
-                        Destroy(player.towerBlocks[randomIndex]);
-                        player.towerBlocks.RemoveAt(randomIndex);
+                        int randomIndex = Random.Range(0, player.towerBlocks.Count);
+                        if (player.towerBlocks[randomIndex] != null)
+                        {
+                            Destroy(player.towerBlocks[randomIndex]);
+                            player.towerBlocks.RemoveAt(randomIndex);
+                        }
                     }
                 }
             }
@@ -255,13 +327,27 @@ public class Player : AttributesSync
     {
         Debug.Log("Tornado activated!");
         Box[] allBoxes = FindObjectsOfType<Box>();
+        Player[] allPlayers = FindObjectsOfType<Player>();
+        
+        // Flash effect on all boxes and make them sway
         foreach (Box box in allBoxes)
         {
             if (!box.hasLanded)
             {
                 box.StartSway(2f);
             }
+            box.StartTornadoEffect(2f);
         }
+        
+        // Flash effect on all players
+        foreach (Player player in allPlayers)
+        {
+            if (player != this && !player.isPlayerFlashing)
+            {
+                player.StartCoroutine(player.PlayerSkillFlash(Color.yellow, 2f));
+            }
+        }
+        
         yield return null;
     }
     
@@ -373,4 +459,3 @@ public class Player : AttributesSync
         syncCurrentMana = currentMana;
     }
 }
-
