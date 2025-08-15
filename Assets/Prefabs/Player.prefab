@@ -141,11 +141,24 @@ MonoBehaviour:
   distance: 5
   boxPrefab: {fileID: 7117939337998734607, guid: b1e52fff156877640950c60e09338058, type: 3}
   boxSpawnPoint: {fileID: 4929329680497432302}
+  targetBlocks: 20
+  targetHeight: 50
+  gameTimeLimit: 60
+  maxMana: 20
+  manaRegenRate: 1
+  freezeCost: 0
+  earthquakeCost: 0
+  tornadoCost: 0
   avatar: {fileID: 7236430101997231911}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerSelfLayer: 0
+  syncPosition: {x: 0, y: 0, z: 0}
+  syncMovingRight: 1
+  syncFlipX: 0
+  syncCurrentMana: 20
+  syncTowerBlocks: 0
+  syncTowerHeight: 0
+  syncGameEnded: 0
+  syncWinMessage: 
+  syncGameTime: 60
 --- !u!114 &7236430101997231911
 MonoBehaviour:
   m_ObjectHideFlags: 0

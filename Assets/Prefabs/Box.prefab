@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 425832465491535872}
   - component: {fileID: 3130033131127527165}
   - component: {fileID: 6048350765004402620}
+  - component: {fileID: 2798925337704337159}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -162,3 +163,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2798925337704337159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117939337998734607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a630d27b3375ac44a8c40d04f662113d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplayer: {fileID: 0}
+  _uidString: d6b4c433-3b40-4052-a71b-f1bfe73b2b2b
+  Reliability: 1
+  LocalMethodBehavior: 1
+  perfectThreshold: 0.3
+  hasLanded: 0
+  ownerPlayer: {fileID: 0}
+  syncPosition: {x: 0, y: 0, z: 0}
+  syncRotation: {x: 0, y: 0, z: 0, w: 0}
+  syncLinearVelocity: {x: 0, y: 0}
+  syncHasLanded: 0
