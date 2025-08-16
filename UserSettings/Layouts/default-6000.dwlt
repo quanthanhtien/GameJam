@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -10.989649, y: 8.59, z: 0}
+    m_Target: {x: 540, y: 960, z: 0}
     speed: 2
     m_Value: {x: -10.989649, y: 8.59, z: 0}
   m_RenderMode: 0
@@ -1451,7 +1451,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.1096146
+    m_Target: 70.71068
     speed: 2
     m_Value: 2.1096146
   m_Ortho:
@@ -1668,7 +1668,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 8a020100
     m_LastClickedID: 66186
-    m_ExpandedIDs: 0000000060db0000
+    m_ExpandedIDs: 0000000008c80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1697,7 +1697,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000060db0000
+    m_ExpandedIDs: 0000000008c80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1799,7 +1799,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1080, y: 1920}
+  m_TargetSize: {x: 814, y: 645}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1814,10 +1814,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -432
-    m_HBaseRangeMax: 432
-    m_VBaseRangeMin: -768
-    m_VBaseRangeMax: 768
+    m_HBaseRangeMin: -407
+    m_HBaseRangeMax: 407
+    m_VBaseRangeMin: -322.5
+    m_VBaseRangeMax: 322.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1837,7 +1837,7 @@ MonoBehaviour:
       y: 21
       width: 814
       height: 645
-    m_Scale: {x: 0.41992188, y: 0.41992188}
+    m_Scale: {x: 1, y: 1}
     m_Translation: {x: 407, y: 322.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1845,12 +1845,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -969.2279
-      y: -768
-      width: 1938.4558
-      height: 1536
+      x: -407
+      y: -322.5
+      width: 814
+      height: 645
     m_MinimalGUI: 1
-  m_defaultScale: 0.41992188
+  m_defaultScale: 1
   m_LastWindowPixelSize: {x: 814, y: 666}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
